@@ -1,9 +1,9 @@
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = var.cidr_block[terraform.workspace]
   instance_tenancy = "default"
 
   tags = {
-    Name = "main"
+    Name = join("-", [var.environment[terraform.workspace], "vpc"])
   }
 }
 
